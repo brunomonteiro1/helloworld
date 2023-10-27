@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: helloworld
+spec:
+  selector:
+    matchLabels:
+      app: helloworld
+  template:
+    metadata:
+      labels:
+        app: helloworld
+    spec:
+      containers:
+        - name: helloworld
+          image: >-
+            720305497848.dkr.ecr.sa-east-1.amazonaws.com/app/helloworld
+          ports:
+            - containerPort: 3000
+              protocol: TCP
+          resources: 
+            limits:
+              memory: "2G"
+              cpu: "500m"

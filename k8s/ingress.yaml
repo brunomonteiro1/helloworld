@@ -1,0 +1,23 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: kuke-ingress
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt
+spec:
+  ingressClassName: nginx
+  rules:
+    - host: api.inovecoder.com.br
+      http:
+        paths:
+          - path: "/"
+            pathType: Prefix
+            backend:
+              service:
+                name: helloworld
+                port: 
+                  number: 3000
+  tls:
+  - hosts:
+    - api.inovecoder.com.br
+    secretName: letsencrypt-tls                
